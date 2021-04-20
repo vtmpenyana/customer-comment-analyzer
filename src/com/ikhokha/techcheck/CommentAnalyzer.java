@@ -24,18 +24,19 @@ public class CommentAnalyzer {
 			
 			String line = null;
 			while ((line = reader.readLine()) != null) {
+				line = line.toLowerCase();
 				if (line.length() < 15) {
 					incOccurrence(resultsMap, "SHORTER_THAN_15");
 
 				}
-				if(line.toLowerCase().contains("shaker") && line.toLowerCase().contains("mover")){
+				if(line.contains("shaker") && line.contains("mover")){
 					incOccurrence(resultsMap, "SHAKER_MENTIONS");
 					incOccurrence(resultsMap, "MOVER_MENTIONS");
 				}
-				else if (line.toLowerCase().contains("mover")) {
+				else if (line.contains("mover")) {
 					incOccurrence(resultsMap, "MOVER_MENTIONS");
 
-				} else if (line.toLowerCase().contains("shaker")) {
+				} else if (line.contains("shaker")) {
 					incOccurrence(resultsMap, "SHAKER_MENTIONS");
 
 				}
@@ -48,7 +49,8 @@ public class CommentAnalyzer {
 			System.out.println("IO Error processing file: " + file.getAbsolutePath());
 			e.printStackTrace();
 		}
-		
+
+		System.out.println("this is the result map: " + resultsMap);
 		return resultsMap;
 		
 	}
